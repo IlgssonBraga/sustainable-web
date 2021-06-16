@@ -5,7 +5,8 @@
     <span>MATERIAIS RECICLÁVEIS</span>
     </div>
     <div id="link">
-    <div id="l"><a>REGISTRE-SE</a></div>
+     
+    <div id="l"><router-link to="/Cadastro">REGISTRE-SE</router-link></div>
     <strong>Já possui uma conta? <router-link to="/home">Acesse!</router-link></strong>
     </div>
   </div>

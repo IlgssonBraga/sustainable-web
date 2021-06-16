@@ -6,12 +6,12 @@
         </div>
         <div id="items">
         <a href="#">Sobre Nós</a>
-        <a href="#">Materiais</a>
+        <router-link to="/inicial">Materiais</router-link>
         <a href="#">Contato</a>
         </div>
         <div id="login">
         <a href="#">Login</a>
-        <router-link id="second" to="/">Registre-se</router-link>
+        <router-link id="second" to="/Cadastro">Registre-se</router-link>
        <!-- <a id="second" href="#">Registre-se</a> -->
         </div>
     </div>
