@@ -19,16 +19,8 @@
         <div id="form">
             <h1 id="tit">Bem vindo(a),<span> Recicla</span></h1>
             <p id="pcc">Preencha os dados abaixo</p>
-            <div class="avatar-upload">
-        <div class="avatar-edit">
-            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-            <label for="imageUpload"></label>
-        </div>
-        <div class="avatar-preview">
-            <div id="imagePreview" style="background-image:(../assets/homem-bonito-e-confiante-sorrindo-com-as-maos-cruzadas-no-peito_176420-18743.jpg);">
-            </div>
-        </div>
-    </div>
+            
+    
             <div id="ipt">
             <form @submit.prevent="cadastroUsuario">
                 <input class="ipt1" type="text" placeholder="Nome" v-model="usuario.nome">

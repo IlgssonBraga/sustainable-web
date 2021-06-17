@@ -6,7 +6,7 @@
         </div>
         <div id="items">
         <a href="#">Sobre Nós</a>
-           <router-link to="/inicial">Materiais</router-link>
+           <router-link to="/inicial">Meus Materiais</router-link>
         <a href="#">Contato</a>
         </div>
         <div id="login">
@@ -39,7 +39,7 @@
       <div id="quadrado1" style="background: #f2f2ef;" v-for="material of materiais" :key="material.id">
           <div>
               <p class="ft1"><b>{{material.name}}</b><br><br>
-              <span id="cama">{{`${material.User.city} - ${material.User.state}` || 'Sem localização'}}</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
+              <span id="cama">{{`${material.User.city} - ${material.User.stat}` || 'Sem localização'}}</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
           </div>
           <div>
               <img  id="ft1" src="../assets/pet.jpg" alt="">    
