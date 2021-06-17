@@ -15,7 +15,7 @@
              <div id="divaa1">
           <input id="btna1" type="button" value="Meus Dados">
           <input id="btna2" type="button" value="Perfil">
-          <input id="btna3" type="button" value="Logout">
+          <input id="btna3" type="button" v-on:click="logout" value="Logout">
           <img id="img2" src="../assets/homem-bonito-e-confiante-sorrindo-com-as-maos-cruzadas-no-peito_176420-18743.jpg">
         </div>
         </div>
@@ -108,6 +108,15 @@ export default {
 
     
   },
+  methods:{
+      logout(){
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+        //   window.location.href = "http://localhost:8080";
+        document.location.reload(true);
+      }
+  }
+  ,
   name: 'inicial'
 }
 
