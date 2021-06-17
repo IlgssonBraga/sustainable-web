@@ -13,12 +13,22 @@
 </template>
 
 <script>
+ const jwt = require('jsonwebtoken');
+ const authConfig = require("../config/auth")
 export default {
+   
     mounted(){
     const token = localStorage.getItem('token')
-    if (token){
-        window.location.href = "http://localhost:8080/inicial";
-    }
+    try {
+        jwt.verify(token, authConfig.secret)
+
+    window.location.href = "http://localhost:8080/inicial";
+    
+  } catch (err) {
+      console.error(err)
+  }
+
+    
   },
   name: 'Index'
 }

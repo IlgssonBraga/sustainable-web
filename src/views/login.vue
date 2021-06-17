@@ -53,7 +53,8 @@
 // console.log(usuarios.logar())
 // const http = require('../services/config');
 const axios = require("axios");
-
+const jwt = require('jsonwebtoken');
+const authConfig = require("../config/auth")
 
 
 
@@ -88,9 +89,18 @@ methods: {
   
   mounted(){
     const token = localStorage.getItem('token')
-    if (token){
-        window.location.href = "http://localhost:8080/inicial";
-    }
+    console.log(token)
+    try {
+        jwt.verify(token, authConfig.secret)
+    
+
+    window.location.href = "http://localhost:8080/inicial";
+    
+  } catch (err) {
+      console.error(err)
+  }
+
+    
   },
   name: 'Index',
 }

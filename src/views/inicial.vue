@@ -76,13 +76,22 @@
 
 <script>  
 
-    
+    const jwt = require('jsonwebtoken');
+    const authConfig = require("../config/auth")
 export default {
     mounted(){
     const token = localStorage.getItem('token')
-    if (!token){
-        window.location.href = "http://localhost:8080";
-    }
+    try {
+        jwt.verify(token, authConfig.secret)
+    
+  } catch (err) {
+      console.error(err)
+      
+
+    window.location.href = "http://localhost:8080";
+  }
+
+    
   },
   name: 'inicial'
 }
