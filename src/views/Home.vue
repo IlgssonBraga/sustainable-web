@@ -10,7 +10,7 @@
         <a href="#">Contato</a>
         </div>
         <div id="login">
-        <a href="#">Login</a>
+        <router-link id="second" to="/login">Login</router-link>
         <router-link id="second" to="/Cadastro">Registre-se</router-link>
        <!-- <a id="second" href="#">Registre-se</a> -->
         </div>
