@@ -89,8 +89,8 @@ methods: {
   
   mounted(){
     const token = localStorage.getItem('token')
-    console.log(token)
-    try {
+    if (token){
+  try {
         jwt.verify(token, authConfig.secret)
     
 
@@ -99,6 +99,8 @@ methods: {
   } catch (err) {
       console.error(err)
   }
+    }
+    
 
     
   },

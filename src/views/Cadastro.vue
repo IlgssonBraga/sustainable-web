@@ -30,8 +30,9 @@
         </div>
     </div>
             <div id="ipt">
-                <input class="ipt1" type="text" placeholder="Nome">
-                <input class="ipt2" type="email" placeholder="Email">
+            <form @submit.prevent="cadastroUsuario">
+                <input class="ipt1" type="text" placeholder="Nome" v-model="usuario.nome">
+                <input class="ipt2" type="email" placeholder="Email" v-model="usuario.email">
                 <input class="ipt3" type="text" placeholder="DDD">
                 <input class="ipt4" type="text" placeholder="Telefone">
                 <input class="ipt5" type="text" placeholder="CEP"> 
@@ -44,13 +45,16 @@
                 <input class="ipt11" type="text" placeholder="RG"> 
                 <input class="ipt11" type="text" placeholder="Orgão Expedidor"> 
                 <input class="ipt12" type="text" placeholder="CPF OU CNPJ">
-                <input class="ipt13" type="text" placeholder="Senha"> <br>
+                <input class="ipt13" type="text" placeholder="Senha" v-model="usuario.password"> <br>
                 <input class="ipt14" type="text" placeholder="Confirmar sua senha"> <br>
+                <div class="button-procure">
+        <button type="submit" class="button-pesq">Finalizar</button>
+            </div>
+        </form>
                
             </div>
-            <div class="button-procure">
-        <button type="button" class="button-pesq">Finalizar</button>
-            </div>
+            
+            
         </div>
         
     </div>
@@ -59,14 +63,44 @@
 
 <script>
 
-function nome(name){
-    return name
-}
-
+// function nome(name){
+//     return name
+// }
+const axios = require("axios");
 
 export default {
-  name: 'Cadastro',
-  methods: nome()
+    data(){
+  return {
+    usuario: {
+        nome: '',
+      email: '',
+      password: ''
+    }
+  }
+},
+methods: {
+  cadastroUsuario(){
+      const token = localStorage.getItem('token')
+    axios.post(`http://localhost:3333/users`,{
+            name: this.usuario.nome,
+        email: this.usuario.email,
+        password: this.usuario.password,
+        }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        
+        
+        
+    }).then(response => {
+        console.log(`Bem vindo, ${response.data}!!!`)
+        window.location.href = "http://localhost:8080/login";
+       
+      
+    })
+  }
+},
+  name: 'Cadastro'
 }
 
 </script>

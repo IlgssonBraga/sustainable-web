@@ -10,13 +10,12 @@
         <a href="#">Contato</a>
         </div>
         <div id="login">
-            <!--<a href="#">Login</a> -->
                 <div id="conta">
              <div id="divaa1">
           <input id="btna1" type="button" value="Meus Dados">
           <input id="btna2" type="button" value="Perfil">
           <input id="btna3" type="button" v-on:click="logout" value="Logout">
-          <img id="img2" src="../assets/homem-bonito-e-confiante-sorrindo-com-as-maos-cruzadas-no-peito_176420-18743.jpg">
+          <img id="img2" src="../assets/avatar.png">
         </div>
         </div>
         </div>
@@ -54,24 +53,6 @@
           </div>
       </div>
       
-    <!--  <div id="quadrado2" style="background: #f2f2ef;">
-          <div>
-              <p class="ft2"><b>Papelão</b><br><br>
-              <span id="cama">Olinda,PE - 29/05/2021</span> <br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> José Luiz</span><br><span id="for">Email:</span><span id="bil"> joseluiz20@gmail.com</span> </p>
-          </div>
-          <div>
-              <img  id="ft2" src="../assets/papelao.jpg" alt="">    
-          </div>
-      </div>
-      <div id="quadrado3" style="background: #f2f2ef;">
-          <div>
-              <p class="ft3"><b>Latinhas</b><br><br>
-              <span id="cama">Caruaru,PE - 28/05/2021</span> <br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> Adeildo José</span><br><span id="for">Email:</span><span id="bil"> adeildojose47@gmail.com</span> </p>
-          </div>
-          <div>
-              <img  id="ft3" src="../assets/meta.jpg" alt="">    
-          </div>
-      </div> -->
   </div> 
 </template>
 
@@ -112,7 +93,6 @@ export default {
       logout(){
           localStorage.removeItem("user");
           localStorage.removeItem("token");
-        //   window.location.href = "http://localhost:8080";
         document.location.reload(true);
       }
   }
