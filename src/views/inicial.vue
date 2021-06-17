@@ -23,14 +23,7 @@
     <div id="container">
             <div id="mid">
                 <h1 class="jmn"><span>Juntos</span> mudamos o mundo</h1>
-                <h4>Pesquise por palavra-chave, tipo de material, cidade ou estado e fornecedor.</h4>
-                <div id="ipt">
-                    <input class="ipt1" type="search" placeholder="Pesquisar materiais" style="font-size: 17px;">
-                    <button class="btn" onclick="click">Buscar</button>
-                        <div class="svg1">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
-                        </div>
-                </div>
+                
                 <div id="imag">
                     <h2 class="tm">Tipos de materiais <span>recicláveis</span></h2>
                     <img  class="plas" src="../assets/plastico.png" alt="plastico">
@@ -42,11 +35,11 @@
         </div>
   </div>
   <div id="list">
-      <h1 id="md">Todos</h1>
+      <h1 id="md">Materiais Disponíveis</h1>
       <div id="quadrado1" style="background: #f2f2ef;" v-for="material of materiais" :key="material.id">
           <div>
               <p class="ft1"><b>{{material.name}}</b><br><br>
-              <span id="cama">Camaragibe,PE - 05/06/2021</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
+              <span id="cama">{{`${material.User.city} - ${material.User.state}` || 'Sem localização'}}</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
           </div>
           <div>
               <img  id="ft1" src="../assets/pet.jpg" alt="">    
@@ -70,7 +63,8 @@ export default {
 
     mounted(){
     const token = localStorage.getItem('token')
-    try {
+    if(token){
+        try {
         jwt.verify(token, authConfig.secret)
     axios.get(`http://localhost:3333/materials`, {
         headers: {
@@ -86,6 +80,9 @@ export default {
 
     window.location.href = "http://localhost:8080";
   }
+    }else{
+        window.location.href = "http://localhost:8080";
+    }
 
     
   },

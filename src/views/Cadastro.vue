@@ -33,20 +33,20 @@
             <form @submit.prevent="cadastroUsuario">
                 <input class="ipt1" type="text" placeholder="Nome" v-model="usuario.nome">
                 <input class="ipt2" type="email" placeholder="Email" v-model="usuario.email">
-                <input class="ipt3" type="text" placeholder="DDD">
-                <input class="ipt4" type="text" placeholder="Telefone">
-                <input class="ipt5" type="text" placeholder="CEP"> 
-                <input class="ipt6" type="text" placeholder="Logradouro">
-                <input class="ipt6" type="text" placeholder="Complemento">
-                <input class="ipt7" type="text" placeholder="Bairro">
-                <input class="ipt7" type="text" placeholder="Cidade">
-                <input class="ipt8" type="text" placeholder="Estado">
-                <input class="ipt10" type="text" placeholder="Pessoa física ou jurídica"> 
-                <input class="ipt11" type="text" placeholder="RG"> 
-                <input class="ipt11" type="text" placeholder="Orgão Expedidor"> 
-                <input class="ipt12" type="text" placeholder="CPF OU CNPJ">
+                <input class="ipt3" type="text" placeholder="DDD" v-model="usuario.ddd">
+                <input class="ipt4" type="text" placeholder="Telefone" v-model="usuario.phone">
+                <input class="ipt5" type="text" placeholder="CEP" v-model="usuario.cep"> 
+                <input class="ipt6" type="text" placeholder="Logradouro" v-model="usuario.rua">
+                <input class="ipt6" type="text" placeholder="Complemento" v-model="usuario.complemento">
+                <input class="ipt7" type="text" placeholder="Bairro" v-model="usuario.bairro">
+                <input class="ipt7" type="text" placeholder="Cidade" v-model="usuario.cidade">
+                <input class="ipt8" type="text" placeholder="Estado" v-model="usuario.estado">
+                <input class="ipt10" type="text" placeholder="Pessoa física ou jurídica" v-model="usuario.type"> 
+                <input class="ipt11" type="text" placeholder="RG" v-model="usuario.rg"> 
+                <input class="ipt11" type="text" placeholder="Orgão Expedidor" v-model="usuario.orgaoemissor"> 
+                <input class="ipt12" type="text" placeholder="CPF" v-model="usuario.cpf">
+                <input class="ipt12" type="text" placeholder="CNPJ" v-model="usuario.cnpj">
                 <input class="ipt13" type="text" placeholder="Senha" v-model="usuario.password"> <br>
-                <input class="ipt14" type="text" placeholder="Confirmar sua senha"> <br>
                 <div class="button-procure">
         <button type="submit" class="button-pesq">Finalizar</button>
             </div>
@@ -67,14 +67,28 @@
 //     return name
 // }
 const axios = require("axios");
-
+const jwt = require('jsonwebtoken');
+ const authConfig = require("../config/auth")
 export default {
     data(){
   return {
     usuario: {
         nome: '',
-      email: '',
-      password: ''
+        email: '',
+        password: '',
+        cpf: '',
+        cnpj: '',
+        type: '',
+        ddd: '',
+        phone: '',
+        cep: '',
+        rua: '',
+        complemento: '',
+        bairro: '',
+        cidade: '',
+        estado: '',
+        rg: '',
+        orgaoemissor: ''
     }
   }
 },
@@ -83,8 +97,21 @@ methods: {
       const token = localStorage.getItem('token')
     axios.post(`http://localhost:3333/users`,{
             name: this.usuario.nome,
-        email: this.usuario.email,
-        password: this.usuario.password,
+            email: this.usuario.email,
+            password: this.usuario.password,
+        cpf: this.usuario.cpf.length > 1 ? this.usuario.cpf : null,
+        cnpj: this.usuario.cnpj.length > 1 ? this.usuario.cnpj : null,
+        type: this.usuario.type,
+        phone: this.usuario.ddd + this.usuario.phone,
+        zip_code: this.usuario.cep,
+        street: this.usuario.rua,
+        complemento: this.usuario.complemento,
+        neighborhood: this.usuario.bairro,
+        city: this.usuario.cidade,
+        state: this.usuario.estado,
+        rg: this.usuario.rg,
+        dispatching_agency: this.usuario.orgaoemissor,
+
         }, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -100,6 +127,22 @@ methods: {
     })
   }
 },
+mounted(){
+    const token = localStorage.getItem('token')
+    if(token){
+try {
+        jwt.verify(token, authConfig.secret)
+
+    window.location.href = "http://localhost:8080/inicial";
+    
+  } catch (err) {
+      console.error(err)
+  }
+    }
+    
+
+    
+  },
   name: 'Cadastro'
 }
 

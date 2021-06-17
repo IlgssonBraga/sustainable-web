@@ -19,7 +19,8 @@ export default {
    
     mounted(){
     const token = localStorage.getItem('token')
-    try {
+    if(token){
+try {
         jwt.verify(token, authConfig.secret)
 
     window.location.href = "http://localhost:8080/inicial";
@@ -27,6 +28,8 @@ export default {
   } catch (err) {
       console.error(err)
   }
+    }
+    
 
     
   },
