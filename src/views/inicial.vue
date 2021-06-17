@@ -44,16 +44,17 @@
   </div>
   <div id="list">
       <h1 id="md">Todos</h1>
-      <div id="quadrado1" style="background: #f2f2ef;">
+      <div id="quadrado1" style="background: #f2f2ef;" v-for="material of materiais" :key="material.id">
           <div>
-              <p class="ft1"><b>Garrafas Pet's</b><br><br>
-              <span id="cama">Camaragibe,PE - 05/06/2021</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> Bil Reciclagem</span><br><span id="for">Email:</span><span id="bil"> bil4reciclagem@gmail.com</span> </p>
+              <p class="ft1"><b>{{material.name}}</b><br><br>
+              <span id="cama">Camaragibe,PE - 05/06/2021</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
           </div>
           <div>
               <img  id="ft1" src="../assets/pet.jpg" alt="">    
           </div>
       </div>
-      <div id="quadrado2" style="background: #f2f2ef;">
+      
+    <!--  <div id="quadrado2" style="background: #f2f2ef;">
           <div>
               <p class="ft2"><b>Papelão</b><br><br>
               <span id="cama">Olinda,PE - 29/05/2021</span> <br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> José Luiz</span><br><span id="for">Email:</span><span id="bil"> joseluiz20@gmail.com</span> </p>
@@ -70,7 +71,7 @@
           <div>
               <img  id="ft3" src="../assets/meta.jpg" alt="">    
           </div>
-      </div>
+      </div> -->
   </div> 
 </template>
 
@@ -78,11 +79,25 @@
 
     const jwt = require('jsonwebtoken');
     const authConfig = require("../config/auth")
+    const axios = require("axios");
 export default {
+    data(){
+        return {
+            materiais: []
+        }
+    },
+
     mounted(){
     const token = localStorage.getItem('token')
     try {
         jwt.verify(token, authConfig.secret)
+    axios.get(`http://localhost:3333/materials`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => {
+      this.materiais = response.data
+    })
     
   } catch (err) {
       console.error(err)
