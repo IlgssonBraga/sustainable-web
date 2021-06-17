@@ -11,7 +11,7 @@
         </div>
         <div id="login">
         <!--<a href="#">Login</a> -->
-        <router-link id="second" to="/">Login</router-link>
+        <router-link id="second" to="/login">Login</router-link>
        <!-- <a id="second" href="#">Registre-se</a> -->
         </div>
     </div>
