@@ -58,8 +58,15 @@
 </template>
 
 <script>
+
+function nome(name){
+    return name
+}
+
+
 export default {
-  name: 'Cadastro'
+  name: 'Cadastro',
+  methods: nome()
 }
 
 </script>

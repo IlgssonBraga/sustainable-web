@@ -14,6 +14,12 @@
 
 <script>
 export default {
+    mounted(){
+    const token = localStorage.getItem('token')
+    if (token){
+        window.location.href = "http://localhost:8080/inicial";
+    }
+  },
   name: 'Index'
 }
 </script>

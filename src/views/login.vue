@@ -5,21 +5,20 @@
     <span>MATERIAIS RECICLÁVEIS</span>
     </div>
   <div class="grid">
-
-    <form action="https://httpbin.org/post" method="POST" class="form login">
+    <form @submit.prevent="login" class="form login">
 
       <div class="form__field">
         <label for="login__username"><svg class="icon">
             <use xlink:href="#icon-user"></use>
           </svg><span class="hidden">Email</span></label>
-        <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="Email" required>
+        <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="Email" v-model="usuario.email" required>
       </div>
 
       <div class="form__field">
         <label for="login__password"><svg class="icon">
             <use xlink:href="#icon-lock"></use>
           </svg><span class="hidden">Senha</span></label>
-        <input id="login__password" type="password" name="password" class="form__input" placeholder="Senha" required>
+        <input id="login__password" type="password" name="password" class="form__input" placeholder="Senha" v-model="usuario.password" required>
       </div>
 
       <div class="form__field">
@@ -50,8 +49,50 @@
 </template>
 
 <script>
+// const usuarios = require('../services/usuarios')
+// console.log(usuarios.logar())
+// const http = require('../services/config');
+const axios = require("axios");
+
+
+
+
+
+
+
 export default {
-  name: 'Index'
+
+  data(){
+  return {
+    usuario: {
+      email: '',
+      password: ''
+    }
+  }
+},
+
+methods: {
+  login(){
+    axios.post(`http://localhost:3333/sessions`, {
+      email: this.usuario.email,
+      password: this.usuario.password,
+    }).then(response => {
+      localStorage.setItem("user", response.data.user);
+      localStorage.setItem("token", response.data.token);
+      // console.log(response.data.user)
+      // console.log(response.data.token)
+      window.location.href = "http://localhost:8080/inicial";
+    })
+  }
+},
+  
+  mounted(){
+    const token = localStorage.getItem('token')
+    if (token){
+        window.location.href = "http://localhost:8080/inicial";
+    }
+  },
+  name: 'Index',
 }
 </script>
 
