@@ -51,10 +51,35 @@
 
 <script>  
 
-    const jwt = require('jsonwebtoken');
-    const authConfig = require("../config/auth")
+    // const jwt = require('jsonwebtoken');
+    // const authConfig = require("../config/auth")
     const axios = require("axios");
+    const jwt = require("jsonwebtoken");
+const authConfig = require("../config/auth");
+
+    const valueToken = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    try {
+      jwt.verify(token, authConfig.secret);
+      return true;
+    } catch (err) {
+      console.error(err);
+
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+
+const isAuthenticated = valueToken()
 export default {
+    beforeRouteEnter(to, from, next) {
+      if ((to.name === "Perfil" || to.name === "inicial") && !isAuthenticated)
+        next({ name: "login" });
+      else next();
+    },
     data(){
         return {
             materiais: []
@@ -65,7 +90,7 @@ export default {
     const token = localStorage.getItem('token')
     if(token){
         try {
-        jwt.verify(token, authConfig.secret)
+        // jwt.verify(token, authConfig.secret)
     axios.get(`http://localhost:3333/materials`, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -78,10 +103,8 @@ export default {
       console.error(err)
       
 
-    window.location.href = "http://localhost:8080";
+    // window.location.href = "http://localhost:8080";
   }
-    }else{
-        window.location.href = "http://localhost:8080";
     }
 
     

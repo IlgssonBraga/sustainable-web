@@ -53,8 +53,8 @@
 // console.log(usuarios.logar())
 // const http = require('../services/config');
 const axios = require("axios");
-const jwt = require('jsonwebtoken');
-const authConfig = require("../config/auth")
+// const jwt = require('jsonwebtoken');
+// const authConfig = require("../config/auth")
 
 
 
@@ -62,6 +62,11 @@ const authConfig = require("../config/auth")
 
 
 export default {
+  beforeRouteEnter(to, from, next) {
+      if ((to.name === "login") && true)
+        next({ name: "inicial" });
+      else next();
+    },
 
   data(){
   return {
@@ -87,23 +92,23 @@ methods: {
   }
 },
   
-  mounted(){
-    const token = localStorage.getItem('token')
-    if (token){
-  try {
-        jwt.verify(token, authConfig.secret)
+  // mounted(){
+  //   const token = localStorage.getItem('token')
+  //   if (token){
+  // try {
+  //       jwt.verify(token, authConfig.secret)
     
 
-    window.location.href = "http://localhost:8080/inicial";
+  //   window.location.href = "http://localhost:8080/inicial";
     
-  } catch (err) {
-      console.error(err)
-  }
-    }
+  // } catch (err) {
+  //     console.error(err)
+  // }
+  //   }
     
 
     
-  },
+  // },
   name: 'Index',
 }
 </script>
