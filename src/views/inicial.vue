@@ -5,17 +5,18 @@
         <img src="../assets/SOLOGO.png" />
         </div>
         <div id="items">
-        <a href="#">Sobre Nós</a>
-           <router-link to="/inicial">Meus Materiais</router-link>
+         <router-link to="/Home">Home</router-link>
+           <router-link to="/inicial">Materiais</router-link>
         <a href="#">Contato</a>
         </div>
         <div id="login">
+            <!--<a href="#">Login</a> -->
                 <div id="conta">
              <div id="divaa1">
           <input id="btna1" type="button" value="Meus Dados">
           <input id="btna2" type="button" value="Perfil">
-          <input id="btna3" type="button" v-on:click="logout" value="Logout">
-          <img id="img2" src="../assets/avatar.png">
+          <input id="btna3" type="button" value="Logout">
+          <img id="img2" src="../assets/homem-bonito-e-confiante-sorrindo-com-as-maos-cruzadas-no-peito_176420-18743.jpg">
         </div>
         </div>
         </div>
@@ -23,7 +24,14 @@
     <div id="container">
             <div id="mid">
                 <h1 class="jmn"><span>Juntos</span> mudamos o mundo</h1>
-                
+                <h4>Pesquise por palavra-chave, tipo de material, cidade ou estado e fornecedor.</h4>
+                <div id="ipt">
+                    <input class="ipt1" type="search" placeholder="Pesquisar materiais" style="font-size: 17px;">
+                    <button class="btn" onclick="click">Buscar</button>
+                        <div class="svg1">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+                        </div>
+                </div>
                 <div id="imag">
                     <h2 class="tm">Tipos de materiais <span>recicláveis</span></h2>
                     <img  class="plas" src="../assets/plastico.png" alt="plastico">
@@ -35,88 +43,82 @@
         </div>
   </div>
   <div id="list">
-      <h1 id="md">Materiais Disponíveis</h1>
-      <div id="quadrado1" style="background: #f2f2ef;" v-for="material of materiais" :key="material.id">
+      <h1 id="md">Todos</h1>
+      <div id="quadrado1" style="background: #f2f2ef;">
           <div>
-              <p class="ft1"><b>{{material.name}}</b><br><br>
-              <span id="cama">{{`${material.User.city} - ${material.User.state}` || 'Sem localização'}}</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> {{material.User.name}}</span><br><span id="for">Email:</span><span id="bil"> {{material.User.email}}</span> </p>
+              <p class="ft1"><b>Garrafas Pet's</b><br><br>
+              <span id="cama">Camaragibe,PE - 05/06/2021</span><br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> Bil Reciclagem</span><br><span id="for">Email:</span><span id="bil"> bil4reciclagem@gmail.com</span> </p>
           </div>
           <div>
-              <img  id="ft1" src="../assets/pet.jpg" alt="">    
+              <a href="#abrirModal"><img  id="ft1" src="../assets/pet.jpg" alt=""></a> 
+ <div id="mode">
+ <div id="abrirModal" class="modal">
+  <a href="#fechar" title="Fechar" class="fechar">x</a>
+  <h2>Selecionar material</h2>
+  
+<img  id="modalimg" src="../assets/pet.jpg">
+     <h1>Garrafa PET</h1>               
+  <p>Camaragibe, PE publicado em 05/06/2021</p>
+ 
+  <button>Selecionar</button>
+ 
+
+</div>  
+</div>
           </div>
       </div>
-      
+      <div id="quadrado2" style="background: #f2f2ef;">
+          <div>
+              <p class="ft2"><b>Papelão</b><br><br>
+              <span id="cama">Olinda,PE - 29/05/2021</span> <br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> José Luiz</span><br><span id="for">Email:</span><span id="bil"> joseluiz20@gmail.com</span> </p>
+          </div>
+          <div>
+              <a href="#abrirModal2"><img  id="ft2" src="../assets/papelao.jpg" alt=""></a> 
+          <div id="mode">
+ <div id="abrirModal2" class="modal">
+  <a href="#fechar" title="Fechar" class="fechar">x</a>
+  <h2>Selecionar material</h2>
+  
+<img  id="modalimg" src="../assets/papelao.jpg">
+     <h1>Papelão</h1>               
+  <p>Olinda, PE publicado em 29/05/2021</p>
+ 
+  <button>Selecionar</button>
+ 
+
+</div>  
+</div>
+          </div>
+      </div>
+      <div id="quadrado3" style="background: #f2f2ef;">
+          <div>
+              <p class="ft3"><b>Latinhas</b><br><br>
+              <span id="cama">Caruaru,PE - 28/05/2021</span> <br><br><br><br><span id="for">Fornecedor:</span><span id="bil"> Adeildo José</span><br><span id="for">Email:</span><span id="bil"> adeildojose47@gmail.com</span> </p>
+          </div>
+          <div>
+              <a href="#abrirModal3"><img  id="ft3" src="../assets/meta.jpg" alt=""></a> 
+               <div id="mode">
+ <div id="abrirModal3" class="modal">
+  <a href="#fechar" title="Fechar" class="fechar">x</a>
+  <h2>Selecionar material</h2>
+  
+<img  id="modalimg" src="../assets/meta.jpg">
+     <h1>Latinhas</h1>               
+  <p>Caruaru, PE publicado em 28/05/2021</p>
+ 
+  <button>Selecionar</button>
+ 
+
+</div>  
+</div>  
+          </div>
+      </div>
   </div> 
+  
 </template>
 
 <script>  
-
-    // const jwt = require('jsonwebtoken');
-    // const authConfig = require("../config/auth")
-    const axios = require("axios");
-    const jwt = require("jsonwebtoken");
-const authConfig = require("../config/auth");
-
-    const valueToken = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    try {
-      jwt.verify(token, authConfig.secret);
-      return true;
-    } catch (err) {
-      console.error(err);
-
-      return false;
-    }
-  } else {
-    return false;
-  }
-};
-
-const isAuthenticated = valueToken()
 export default {
-    beforeRouteEnter(to, from, next) {
-      if ((to.name === "Perfil" || to.name === "inicial") && !isAuthenticated)
-        next({ name: "login" });
-      else next();
-    },
-    data(){
-        return {
-            materiais: []
-        }
-    },
-
-    mounted(){
-    const token = localStorage.getItem('token')
-    if(token){
-        try {
-        // jwt.verify(token, authConfig.secret)
-    axios.get(`http://localhost:3333/materials`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(response => {
-      this.materiais = response.data
-    })
-    
-  } catch (err) {
-      console.error(err)
-      
-
-    // window.location.href = "http://localhost:8080";
-  }
-    }
-
-    
-  },
-  methods:{
-      logout(){
-          localStorage.removeItem("user");
-          localStorage.removeItem("token");
-        document.location.reload(true);
-      }
-  }
-  ,
   name: 'inicial'
 }
 
@@ -196,12 +198,7 @@ export default {
 ul {
     list-style-type: none; 
 }
-#second {
-margin-left:20px;
-color: #5ead70 !important;
-font-weight: 200px !important;
-text-decoration: none;
-}
+
 #mid {
     text-align: center;
     margin-top: 60px;
@@ -476,4 +473,91 @@ position:absolute;
  background:white;
   padding-bottom:5px;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+  width: 400px;
+  height: 420px;
+  margin-top: 12%;
+  margin-left: 42%;
+ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+ border-radius: 20px;
+}
+
+.modal h2{
+  font-size: 25px;
+  margin-top: 40px;
+  margin-left: 5px;
+  text-align:center;
+  
+}
+.modal h1{
+    font-size: 20px;
+    color: #489677;
+    margin-top: 10px;
+    text-align:center;
+}
+.modal p{
+  font-size: 15px;
+  margin-top: 10px;
+  text-align:center;
+  color: #4c5452;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.fechar {
+  position: absolute;
+  width: 30px;
+  right: -15px;
+  top: -20px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  background: #ff4545;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #8d0000;
+}
+
+.modal img{
+    width: 200px;
+    margin-left: 25%;
+    margin-top: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.modal button {
+    width:60%;
+    margin-top: 20px;
+    margin-left: 80px;
+    outline: 0;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 20px;
+    background: #489677;
+    color: white;
+}
+.modal p{
+    font-size: 15px;
+    margin-top: 30px;
+    
+}
+
 </style>
