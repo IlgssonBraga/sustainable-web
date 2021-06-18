@@ -38,7 +38,7 @@
                 <input class="ipt11" type="text" placeholder="Orgão Expedidor" v-model="usuario.orgaoemissor"> 
                 <input class="ipt12" type="text" placeholder="CPF" v-model="usuario.cpf">
                 <input class="ipt12" type="text" placeholder="CNPJ" v-model="usuario.cnpj">
-                <input class="ipt13" type="text" placeholder="Senha" v-model="usuario.password"> <br>
+                <input class="ipt13" type="password" placeholder="Senha" v-model="usuario.password"> <br>
                 <div class="button-procure">
         <button type="submit" class="button-pesq">Finalizar</button>
             </div>
