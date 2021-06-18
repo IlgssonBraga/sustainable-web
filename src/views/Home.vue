@@ -45,7 +45,13 @@ reciclagem.</div>
 </template>
 
 <script>
+const isAuthenticated = require("../services/isAuthenticated")
 export default {
+    beforeRouteEnter(to, from, next) {
+      if ((to.name === "Home") && isAuthenticated)
+        next({ name: "inicial" });
+      else next();
+    },
   name: 'Home'
 }
 </script>

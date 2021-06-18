@@ -54,31 +54,13 @@
     // const jwt = require('jsonwebtoken');
     // const authConfig = require("../config/auth")
     const axios = require("axios");
-    const jwt = require("jsonwebtoken");
-const authConfig = require("../config/auth");
+const isAuthenticated = require("../services/isAuthenticated")
 
-    const valueToken = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    try {
-      jwt.verify(token, authConfig.secret);
-      return true;
-    } catch (err) {
-      console.error(err);
-
-      return false;
-    }
-  } else {
-    return false;
-  }
-};
-
-const isAuthenticated = valueToken()
 export default {
     beforeRouteEnter(to, from, next) {
-      if ((to.name === "Perfil" || to.name === "inicial") && !isAuthenticated)
-        next({ name: "login" });
-      else next();
+      if ((to.name === "inicial") && isAuthenticated)
+        next();
+      else next({ name: "login" });
     },
     data(){
         return {
@@ -102,8 +84,6 @@ export default {
   } catch (err) {
       console.error(err)
       
-
-    // window.location.href = "http://localhost:8080";
   }
     }
 

@@ -39,7 +39,13 @@
 </template>
 
 <script>  
+const isAuthenticated = require("../services/isAuthenticated")
 export default {
+  beforeRouteEnter(to, from, next) {
+      if ((to.name === "Perfil") && isAuthenticated)
+        next();
+      else next({ name: "login" });
+    },
   name: 'Perfil'
 }
 

@@ -59,8 +59,7 @@
 //     return name
 // }
 const axios = require("axios");
-const jwt = require('jsonwebtoken');
- const authConfig = require("../config/auth")
+ const isAuthenticated = require("../services/isAuthenticated")
 export default {
     data(){
   return {
@@ -119,22 +118,11 @@ methods: {
     })
   }
 },
-mounted(){
-    const token = localStorage.getItem('token')
-    if(token){
-try {
-        jwt.verify(token, authConfig.secret)
-
-    window.location.href = "http://localhost:8080/inicial";
-    
-  } catch (err) {
-      console.error(err)
-  }
-    }
-    
-
-    
-  },
+beforeRouteEnter(to, from, next) {
+      if ((to.name === "Cadastro") && isAuthenticated)
+        next({ name: "inicial" });
+      else next();
+    },
   name: 'Cadastro'
 }
 

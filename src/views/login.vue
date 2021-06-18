@@ -49,21 +49,12 @@
 </template>
 
 <script>
-// const usuarios = require('../services/usuarios')
-// console.log(usuarios.logar())
-// const http = require('../services/config');
 const axios = require("axios");
-// const jwt = require('jsonwebtoken');
-// const authConfig = require("../config/auth")
-
-
-
-
-
+const isAuthenticated = require("../services/isAuthenticated")
 
 export default {
   beforeRouteEnter(to, from, next) {
-      if ((to.name === "login") && true)
+      if ((to.name === "login") && isAuthenticated)
         next({ name: "inicial" });
       else next();
     },
@@ -85,30 +76,10 @@ methods: {
     }).then(response => {
       localStorage.setItem("user", response.data.user);
       localStorage.setItem("token", response.data.token);
-      // console.log(response.data.user)
-      // console.log(response.data.token)
       window.location.href = "http://localhost:8080/inicial";
     })
   }
 },
-  
-  // mounted(){
-  //   const token = localStorage.getItem('token')
-  //   if (token){
-  // try {
-  //       jwt.verify(token, authConfig.secret)
-    
-
-  //   window.location.href = "http://localhost:8080/inicial";
-    
-  // } catch (err) {
-  //     console.error(err)
-  // }
-  //   }
-    
-
-    
-  // },
   name: 'Index',
 }
 </script>

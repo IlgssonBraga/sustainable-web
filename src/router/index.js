@@ -1,24 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import Home from '../views/Home.vue'
-import Index from '../views/Index.vue'
-const jwt = require("jsonwebtoken");
-const authConfig = require("../config/auth");
-
-const isAuthenticated = () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    try {
-      jwt.verify(token, authConfig.secret);
-      return true;
-    } catch (err) {
-      console.error(err);
-
-      return false;
-    }
-  } else {
-    return false;
-  }
-};
+import Index from "../views/Index.vue";
 
 const routes = [
   {
@@ -79,10 +61,5 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if ((to.name === "Perfil" || to.name === "inicial") && !isAuthenticated)
-    next({ name: "login" });
-  else next();
-});
 
 export default router
